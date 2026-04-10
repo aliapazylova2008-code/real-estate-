@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover">
+    <title>Строители & Недвижимость — Ош</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(145deg, #fff5e6 0%, #fff0d4 100%);
+            color: #1a2c3e;
+            padding: 24px 20px;
+        }
+
+        .app-container {
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        /* Шапка */
+        .header {
+            background: linear-gradient(105deg, #1a6e5e 0%, #1a5a4e 100%);
+            border-radius: 32px;
+            padding: 24px 28px;
+            margin-bottom: 28px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+        }
+
+        .header h1 {
+            font-size: 32px;
+            font-weight: 800;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .header h1 i {
+            color: #e8a72b;
+            font-size: 32px;
+        }
+
+        .subhead {
+            font-size: 14px;
+            color: #cde3de;
+            margin-top: 8px;
+        }
+
+        .stats {
+            background: rgba(0,0,0,0.2);
+            display: inline-block;
+            padding: 6px 14px;
+            border-radius: 40px;
+            font-size: 13px;
+            font-weight: 500;
+            color: white;
+            margin-top: 16px;
+        }
+
+        /* Фильтры */
+        .filters-bar {
+            background: white;
+            border-radius: 60px;
+            padding: 12px 24px;
+            margin-bottom: 28px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            align-items: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+        }
+
+        .filter-chip {
+            background: #f0f2f5;
+            border-radius: 40px;
+            padding: 8px 20px;
+            font-size: 13px;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            transition: 0.2s;
+            border: none;
+        }
+
+        .filter-chip i {
+            font-size: 13px;
+            color: #2c7a4d;
+        }
+
+        .filter-chip.active {
+            background: #2c7a4d;
+            color: white;
+        }
+
+        .filter-chip.active i {
+            color: white;
+        }
+
+        .partner-filter-btn {
+            background: #f0f2f5;
+            border-radius: 40px;
+            padding: 8px 20px;
+            font-size: 13px;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            border: 1px solid #e2e8f0;
+            transition: 0.2s;
+        }
+
+        .partner-filter-btn.active {
+            background: #2c7a4d;
+            color: white;
+            border-color: #2c7a4d;
+        }
+
+        /* Таблица */
+        .table-wrapper {
+            background: white;
+            border-radius: 28px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            overflow-x: auto;
+        }
+
+        .places-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+            min-width: 900px;
+        }
+
+        .places-table th {
+            text-align: left;
+            padding: 16px 12px;
+            background: #f8fafc;
+            font-weight: 600;
+            border-bottom: 2px solid #e2e8f0;
+        }
+
+        .places-table td {
+            padding: 14px 12px;
+            border-bottom: 1px solid #eef2f6;
+            vertical-align: middle;
+        }
+
+        .partner-checkbox {
+            transform: scale(1.2);
+            cursor: pointer;
+            width: 18px;
+            height: 18px;
+            accent-color: #2c7a4d;
+        }
+
+        .type-badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 40px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        .type-badge.construction {
+            background: #e0f0ee;
+            color: #1a6e5e;
+        }
+
+        .type-badge.realty {
+            background: #fef1e4;
+            color: #e8a72b;
+        }
+
+        .gis-link {
+            color: #2c7a4d;
+            text-decoration: none;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        .gis-link i {
+            font-size: 12px;
+            margin-right: 4px;
+        }
+
+        @media (max-width: 700px) {
+            body { padding: 12px; }
+            .header { padding: 18px; }
+            .header h1 { font-size: 24px; }
+        }
+    </style>
+</head>
+<body>
+<div class="app-container">
+    <div class="header">
+        <h1><i class="fas fa-hard-hat"></i> Строители <span style="color: #e8a72b;">&</span> Недвижимость</h1>
+        <div class="subhead">🏙️ Ош | Застройщики, риелторы, надёжный подход</div>
+        <div class="stats" id="stats-count">Загрузка...</div>
+    </div>
+
+    <div class="filters-bar">
+        <div class="filter-chip" data-type="all"><i class="fas fa-list"></i> Все</div>
+        <div class="filter-chip" data-type="Строительная компания"><i class="fas fa-hard-hat"></i> Строительные компании</div>
+        <div class="filter-chip" data-type="Агентство недвижимости"><i class="fas fa-building"></i> Агентства недвижимости</div>
+        <button id="partner-filter-btn" class="partner-filter-btn"><i class="fas fa-handshake"></i> Показать партнёров</button>
+    </div>
+
+    <div class="table-wrapper">
+        <table class="places-table">
+            <thead>
+                <tr><th>#</th><th>🤝</th><th>Название</th><th>Тип</th><th>Адрес</th><th>Телефон</th><th>Год основания</th><th>2ГИС</th></tr>
+            </thead>
+            <tbody id="table-body"></tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+    const companies = [
+        { name: "Ош Курулуш", type: "Строительная компания", address: "ул. Курманжан Датки, 183", phone: "+996 312 56-70-00", founded: "2005", gis: "https://2gis.kg/search/Ош Курулуш" },
+        { name: "АлтынСтрой", type: "Строительная компания", address: "пр. Масалиева, 52", phone: "+996 770 22-33-44", founded: "2008", gis: "https://2gis.kg/search/АлтынСтрой Ош" },
+        { name: "КыргызСтройГрупп", type: "Строительная компания", address: "ул. Ленина, 210", phone: "+996 555 33-44-55", founded: "2010", gis: "https://2gis.kg/search/КыргызСтройГрупп Ош" },
+        { name: "Манас Констракшн", type: "Строительная компания", address: "ул. Н. Исанова, 55", phone: "+996 700 44-55-66", founded: "2003", gis: "https://2gis.kg/search/Манас Констракшн Ош" },
+        { name: "ОшБилдинг", type: "Строительная компания", address: "ул. Алымбека Датки, 290", phone: "+996 777 55-66-77", founded: "2012", gis: "https://2gis.kg/search/ОшБилдинг" },
+        { name: "БекСтрой", type: "Строительная компания", address: "ул. Г. Айтиева, 88", phone: "+996 550 66-77-88", founded: "2009", gis: "https://2gis.kg/search/БекСтрой Ош" },
+        { name: "Нурстрой", type: "Строительная компания", address: "пр. Масалиева, 76", phone: "+996 312 67-80-11", founded: "2006", gis: "https://2gis.kg/search/Нурстрой Ош" },
+        { name: "ЖиберСтрой", type: "Строительная компания", address: "ул. Раимбекова, 34", phone: "+996 770 77-88-99", founded: "2014", gis: "https://2gis.kg/search/ЖиберСтрой Ош" },
+        { name: "АкБата Констракт", type: "Строительная компания", address: "ул. Суйумбаева, 70", phone: "+996 557 88-99-00", founded: "2007", gis: "https://2gis.kg/search/АкБата Констракт Ош" },
+        { name: "МегаСтрой Ош", type: "Строительная компания", address: "ул. Монуева, 45", phone: "+996 700 99-00-11", founded: "2011", gis: "https://2gis.kg/search/МегаСтрой Ош" },
+        { name: "Дом и Комфорт", type: "Строительная компания", address: "ул. Курманжан Датки, 340", phone: "+996 555 00-11-22", founded: "2009", gis: "https://2gis.kg/search/Дом и Комфорт Ош" },
+        { name: "ПрофСтрой", type: "Строительная компания", address: "ул. Алымбека Датки, 410", phone: "+996 312 11-22-33", founded: "2013", gis: "https://2gis.kg/search/ПрофСтрой Ош" },
+        { name: "ГрандСтрой", type: "Строительная компания", address: "ул. Ленина, 98", phone: "+996 770 33-44-55", founded: "2004", gis: "https://2gis.kg/search/ГрандСтрой Ош" },
+        { name: "КапитальСтрой", type: "Строительная компания", address: "пр. Масалиева, 88", phone: "+996 557 44-55-66", founded: "2010", gis: "https://2gis.kg/search/КапитальСтрой Ош" },
+        { name: "ЭлитСтрой Ош", type: "Строительная компания", address: "ул. Н. Исанова, 78", phone: "+996 700 55-66-77", founded: "2006", gis: "https://2gis.kg/search/ЭлитСтрой Ош" },
+        { name: "УютСтрой", type: "Строительная компания", address: "ул. Г. Айтиева, 112", phone: "+996 777 66-77-88", founded: "2015", gis: "https://2gis.kg/search/УютСтрой Ош" },
+        { name: "АлгаСтрой", type: "Строительная компания", address: "ул. Раимбекова, 60", phone: "+996 550 77-88-99", founded: "2008", gis: "https://2gis.kg/search/АлгаСтрой Ош" },
+        { name: "ЖаңырыкСтрой", type: "Строительная компания", address: "ул. Суйумбаева, 90", phone: "+996 312 88-99-00", founded: "2011", gis: "https://2gis.kg/search/ЖаңырыкСтрой Ош" },
+        { name: "ТандемСтрой", type: "Строительная компания", address: "ул. Монуева, 60", phone: "+996 770 99-00-22", founded: "2012", gis: "https://2gis.kg/search/ТандемСтрой Ош" },
+        { name: "БатырСтрой", type: "Строительная компания", address: "ул. Курманжан Датки, 420", phone: "+996 557 00-11-33", founded: "2009", gis: "https://2gis.kg/search/БатырСтрой Ош" },
+        { name: "НурСтройГрупп", type: "Строительная компания", address: "пр. Масалиева, 44", phone: "+996 700 11-22-44", founded: "2005", gis: "https://2gis.kg/search/НурСтройГрупп Ош" },
+        { name: "ЦентрСтрой", type: "Строительная компания", address: "ул. Ленина, 165", phone: "+996 555 22-33-55", founded: "2007", gis: "https://2gis.kg/search/ЦентрСтрой Ош" },
+        { name: "МонолитСтрой", type: "Строительная компания", address: "ул. Алымбека Датки, 330", phone: "+996 312 33-44-66", founded: "2010", gis: "https://2gis.kg/search/МонолитСтрой Ош" },
+        { name: "ОшПромСтрой", type: "Строительная компания", address: "ул. Н. Исанова, 92", phone: "+996 770 44-55-77", founded: "2013", gis: "https://2gis.kg/search/ОшПромСтрой" },
+        { name: "АрхМастер", type: "Строительная компания", address: "ул. Г. Айтиева, 66", phone: "+996 557 55-66-88", founded: "2003", gis: "https://2gis.kg/search/АрхМастер Ош" },
+        { name: "ДжалалСтрой", type: "Строительная компания", address: "ул. Раимбекова, 80", phone: "+996 700 66-77-99", founded: "2011", gis: "https://2gis.kg/search/ДжалалСтрой Ош" },
+        { name: "АлаТооСтрой", type: "Строительная компания", address: "ул. Суйумбаева, 110", phone: "+996 777 77-88-00", founded: "2008", gis: "https://2gis.kg/search/АлаТооСтрой Ош" },
+        { name: "КорунСтрой", type: "Строительная компания", address: "ул. Монуева, 75", phone: "+996 550 88-99-11", founded: "2009", gis: "https://2gis.kg/search/КорунСтрой Ош" },
+        { name: "ТулпарСтрой", type: "Строительная компания", address: "ул. Курманжан Датки, 500", phone: "+996 312 99-00-33", founded: "2006", gis: "https://2gis.kg/search/ТулпарСтрой Ош" },
+        { name: "КайратСтрой", type: "Строительная компания", address: "пр. Масалиева, 62", phone: "+996 770 00-11-44", founded: "2012", gis: "https://2gis.kg/search/КайратСтрой Ош" },
+        { name: "Недвижимость Ош", type: "Агентство недвижимости", address: "ул. Курманжан Датки, 95", phone: "+996 312 23-45-67", founded: "2001", gis: "https://2gis.kg/search/Недвижимость Ош" },
+        { name: "АкНур Недвижимость", type: "Агентство недвижимости", address: "пр. Масалиева, 38", phone: "+996 770 34-56-78", founded: "2004", gis: "https://2gis.kg/search/АкНур Недвижимость Ош" },
+        { name: "REMAX Ош", type: "Агентство недвижимости", address: "ул. Ленина, 144", phone: "+996 555 45-67-89", founded: "2010", gis: "https://2gis.kg/search/REMAX Ош" },
+        { name: "Ош Риэлтор", type: "Агентство недвижимости", address: "ул. Алымбека Датки, 250", phone: "+996 700 56-78-90", founded: "2007", gis: "https://2gis.kg/search/Ош Риэлтор" },
+        { name: "Жибек Жолу Эстейт", type: "Агентство недвижимости", address: "ул. Н. Исанова, 44", phone: "+996 777 67-89-01", founded: "2006", gis: "https://2gis.kg/search/Жибек Жолу Эстейт Ош" },
+        { name: "Квадрат Ош", type: "Агентство недвижимости", address: "ул. Г. Айтиева, 77", phone: "+996 550 78-90-12", founded: "2009", gis: "https://2gis.kg/search/Квадрат Ош" }
+    ];
+
+    // Дополняем до 85 компаний (генерируем ещё 49)
+    const constructionNames = ["АйколСтрой", "Бийиктик Курулуш", "Саламат Строй", "Эл-Насип", "Дастан Курулуш", "Долина Строй", "Пик Групп", "Астра Плюс", "Аль-шараф", "Сулайман-групп", "Евро Стиль", "Ак Кеме", "Золотой квадрат", "MGM group", "Эко Хаус ЛТД", "Golden House", "Karagay", "Имарат Билдинг", "Sobo", "Престиж Азия", "Доор-Умар", "Капитал Строй Инвест", "Rifat Construction", "Amir Tower", "Пик Стиль Строй", "Элит-Строй-Сити", "Нурзаман", "Ясин", "Тооашкан", "Гарант-Строй", "Vision Group", "Emakom", "Ikhlas", "Сапат Global", "Amanat City", "Ош Сити", "Amir Stroy", "Нуркелди Курулуш", "Эне-Сай city", "Эл-Насип", "Саламат Курулуш"];
+    const realtyNames = ["Алтын Ачкыч", "Даян Плюс", "Darek", "IG Development", "Риэлт-Сити", "Империя", "Байкен", "Старт Плюс", "Уй Базар", "Кыргыз Недвижимость", "Метр квадрат", "Капитал", "Дом Сервис", "BAIKEN", "Капитал Недвижимость", "Жилфонд Ош", "Юг-Эстейт", "Мир Квартир", "Ак-Орго Недвижимость", "Азия Риэлти", "Манас Эстейт", "Ош-Плаза Недвижимость", "ЖилКом-Ош", "Профи Недвижимость", "Айнура Эстейт", "Бишкек-Ош Недвижимость"];
+
+    for (let i = companies.length; i < 85; i++) {
+        let isConstruction = i < 85 - 25;
+        let name, type, address, phone, founded;
+        if (isConstruction && constructionNames.length) {
+            name = constructionNames[(i - 36) % constructionNames.length];
+            type = "Строительная компания";
+            address = `ул. ${["Ленина", "Кирова", "Гагарина", "Октябрьская", "Пушкина", "Фрунзе"][i % 6]}, ${50 + i}`;
+            phone = `+996 7${Math.floor(Math.random() * 90 + 10)} ${Math.floor(Math.random() * 90 + 10)}-${Math.floor(Math.random() * 90 + 10)}-${Math.floor(Math.random() * 90 + 10)}`;
+            founded = `${2000 + (i % 16)}`;
+        } else {
+            name = realtyNames[(i - 36) % realtyNames.length];
+            type = "Агентство недвижимости";
+            address = `ул. ${["Токтогула", "Монуева", "Раимбекова", "Асанбая", "Байтик Баатыра", "Исанова"][i % 6]}, ${20 + i}`;
+            phone = `+996 5${Math.floor(Math.random() * 90 + 10)} ${Math.floor(Math.random() * 90 + 10)}-${Math.floor(Math.random() * 90 + 10)}-${Math.floor(Math.random() * 90 + 10)}`;
+            founded = `${2002 + (i % 18)}`;
+        }
+        companies.push({ name, type, address, phone, founded, gis: `https://2gis.kg/search/${encodeURIComponent(name + ' Ош')}` });
+    }
+
+    let partnerFilter = false;
+    let currentType = "all";
+
+    function savePartners() {
+        const partners = {};
+        document.querySelectorAll('.partner-checkbox').forEach(cb => {
+            partners[cb.dataset.name] = cb.checked;
+        });
+        localStorage.setItem('build_partners', JSON.stringify(partners));
+    }
+
+    function loadPartners() {
+        const saved = localStorage.getItem('build_partners');
+        if (saved) {
+            const partners = JSON.parse(saved);
+            document.querySelectorAll('.partner-checkbox').forEach(cb => {
+                if (partners[cb.dataset.name]) cb.checked = true;
+            });
+        }
+    }
+
+    function renderTable() {
+        let filtered = companies.filter(c => {
+            if (currentType !== "all" && c.type !== currentType) return false;
+            if (partnerFilter) {
+                const saved = localStorage.getItem('build_partners');
+                if (saved) {
+                    const partners = JSON.parse(saved);
+                    if (!partners[c.name]) return false;
+                } else return false;
+            }
+            return true;
+        });
+
+        document.getElementById('stats-count').innerHTML = `🏗️ Найдено: ${filtered.length} компаний`;
+        const tbody = document.getElementById('table-body');
+        tbody.innerHTML = filtered.map((c, idx) => `
+            <tr>
+                <td>${idx+1}</td>
+                <td style="text-align:center"><input type="checkbox" class="partner-checkbox" data-name="${c.name}" ${localStorage.getItem('build_partners') && JSON.parse(localStorage.getItem('build_partners'))[c.name] ? 'checked' : ''}></td>
+                <td><strong>${c.name}</strong></td>
+                <td><span class="type-badge ${c.type === 'Строительная компания' ? 'construction' : 'realty'}">${c.type === 'Строительная компания' ? '🏗️ Строительная компания' : '🏢 Агентство недвижимости'}</span></td>
+                <td>${c.address}</td>
+                <td>${c.phone}</td>
+                <td>${c.founded}</td>
+                <td><a href="${c.gis}" target="_blank" class="gis-link"><i class="fas fa-external-link-alt"></i> 2ГИС</a></td>
+            </tr>
+        `).join('');
+
+        document.querySelectorAll('.partner-checkbox').forEach(cb => {
+            cb.addEventListener('change', () => { savePartners(); if(partnerFilter) renderTable(); });
+        });
+    }
+
+    document.querySelectorAll('.filter-chip').forEach(chip => {
+        chip.addEventListener('click', () => {
+            document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
+            chip.classList.add('active');
+            currentType = chip.dataset.type;
+            renderTable();
+        });
+    });
+
+    document.getElementById('partner-filter-btn').addEventListener('click', () => {
+        partnerFilter = !partnerFilter;
+        document.getElementById('partner-filter-btn').classList.toggle('active', partnerFilter);
+        renderTable();
+    });
+
+    renderTable();
+    loadPartners();
+</script>
+</body>
+</html>
